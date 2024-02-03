@@ -54,6 +54,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/
+    - assets/images/Product-images/
 
 
   # The following line ensures that the Material Icons font is
@@ -83,6 +84,8 @@ flutter:
     - family: Poppins
       fonts:
         - asset: assets/fonts/Poppins/Poppins-Medium.ttf
+        - asset: assets/fonts/Poppins/Poppins-SemiBold.ttf
+          style: normal
 
 
   # fonts:
