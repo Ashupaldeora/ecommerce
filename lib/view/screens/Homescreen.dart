@@ -2,353 +2,355 @@ import 'package:ecommerce/Utils/headphones.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
-  // This widget is the root of your application.
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: SafeArea(
-        child: Scaffold(
-          backgroundColor: const Color(0xffF4F6F8),
-          body: SingleChildScrollView(
-            child: Container(
-              width: width,
-              decoration: const BoxDecoration(color: Colors.transparent),
-              child: Column(
-                // Main column
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    height: height * 0.09,
-                    width: width,
-                    decoration: const BoxDecoration(color: Colors.transparent),
-                    //app bar made of container
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        // SizedBox(
-                        //   width: width * 0.043,
-                        // ),
-                        Container(
-                          margin: EdgeInsets.only(left: width * 0.025),
-                          decoration:
-                              const BoxDecoration(color: Colors.transparent),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                'assets/images/4-dots-removebg.png',
-                                // height: 70,
-                                width: 20,
-                                color: Colors.grey.shade800,
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        Container(
-                          margin: EdgeInsets.only(left: width * 0.355),
-                          decoration:
-                              const BoxDecoration(color: Colors.transparent),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.all_inclusive,
-                                size: 50,
-                                color: Colors.grey.shade800,
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        Container(
-                          padding: EdgeInsets.only(left: width * 0.025),
-                          margin: EdgeInsets.only(left: width * 0.2),
-                          decoration:
-                              const BoxDecoration(color: Colors.transparent),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Row(
-                                children: [
-                                  Image.asset(
-                                    'assets/images/scan.png',
-                                    height: 30,
-                                    width: 30,
-                                    color: Colors.grey.shade800,
-                                  ),
-                                  SizedBox(
-                                    width: width * 0.03,
-                                  ),
-                                  Icon(
-                                    Icons.shopping_bag_outlined,
-                                    size: 31,
-                                    color: Colors.grey.shade800,
-                                  ),
-                                  SizedBox(
-                                    width: width * 0.02,
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    height: 50,
-                    decoration: const BoxDecoration(color: Colors.transparent),
-                    //Search bar and mic
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: width * 0.03,
-                        ),
-                        Container(
-                          height: height * 0.06,
-                          width: width * 0.85,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(7),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.05),
-                                    blurRadius: 15,
-                                    spreadRadius: 3,
-                                    offset: const Offset(0, 5))
-                              ]),
-                          child: Row(
-                            // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              SizedBox(
-                                width: width * 0.045,
-                              ),
-                              Text(
-                                "Search here",
-                                style: TextStyle(
-                                    color: Colors.grey.shade600,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Poppins'),
-                              ),
-                              SizedBox(
-                                width: width * 0.45,
-                              ),
-                              Icon(
-                                Icons.search,
-                                color: Colors.grey.shade600,
-                                size: 27,
-                              )
-                            ],
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        Icon(
-                          Icons.mic_none,
-                          color: Colors.grey.shade600,
-                          size: 35,
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  //choose brand and see all
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      // SizedBox(
-                      //   width: 13,
-                      // ),
-                      Text(
-                        "Choose brand",
-                        style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: -0.5,
-                            color: Colors.grey.shade800),
-                      ),
-                      const SizedBox(
-                        width: 160,
-                      ),
-                      Text(
-                        "See All",
-                        style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: -0.5,
-                            color: Colors.grey.shade700),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  //Containers of brands
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        const SizedBox(
-                          width: 7,
-                        ),
-                        brandContainer(
-                            brandName: Brands[0]['name'],
-                            height: height,
-                            width: width,
-                            image: Brands[0]['image'],
-                            imageHeight: height,
-                            imagepercentHeight: 0.078),
-                        brandContainer(
-                            brandName: Brands[1]['name'],
-                            height: height,
-                            width: width,
-                            image: Brands[1]['image'],
-                            // imageHeight: 40,
-                            upperSidebox: 14,
-                            lowerSidebox: 16,
-                            imageHeight: height,
-                            imagepercentHeight: 0.044),
-                        brandContainer(
-                            brandName: Brands[2]['name'],
-                            height: height,
-                            width: width,
-                            image: Brands[2]['image'],
-                            // imageHeight: 70,
-                            imageHeight: height,
-                            imagepercentHeight: 0.078),
-                        brandContainer(
-                            brandName: Brands[3]['name'],
-                            height: height,
-                            width: width,
-                            image: Brands[3]['image'],
-                            // imageHeight: 55,
-                            upperSidebox: 8,
-                            lowerSidebox: 5,
-                            imageHeight: height,
-                            imagepercentHeight: 0.062),
-                        SizedBox(
-                          width: width * 0.045,
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  //POPULAR , DISCOUNT
-                  Container(
-                      height: 70,
+    return Scaffold(
+      backgroundColor: const Color(0xffF4F6F8),
+      body: SingleChildScrollView(
+        child: Container(
+          width: width,
+          decoration: const BoxDecoration(color: Colors.transparent),
+          child: Column(
+            // Main column
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: EdgeInsets.only(top: 20),
+                height: height * 0.12,
+                width: width,
+                decoration: const BoxDecoration(color: Colors.transparent),
+                //app bar made of container
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // SizedBox(
+                    //   width: width * 0.043,
+                    // ),
+                    Container(
+                      margin: EdgeInsets.only(left: width * 0.025),
                       decoration:
                           const BoxDecoration(color: Colors.transparent),
-                      child: Row(
-                        // mainAxisAlignment: MainAxisAlignment.start,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const SizedBox(
-                            width: 21,
+                          Image.asset(
+                            'assets/images/4-dots-removebg.png',
+                            // height: 70,
+                            width: 20,
+                            color: Colors.grey.shade800,
                           ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                        ],
+                      ),
+                    ),
+
+                    Container(
+                      margin: EdgeInsets.only(left: width * 0.355),
+                      decoration:
+                          const BoxDecoration(color: Colors.transparent),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.all_inclusive,
+                            size: 50,
+                            color: Colors.grey.shade800,
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    Container(
+                      padding: EdgeInsets.only(left: width * 0.025),
+                      margin: EdgeInsets.only(left: width * 0.2),
+                      decoration:
+                          const BoxDecoration(color: Colors.transparent),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
                             children: [
-                              category(
-                                  categoryName: "Popular",
-                                  Colors: Colors.grey.shade800),
-                              const SizedBox(
-                                height: 5,
+                              Image.asset(
+                                'assets/images/scan.png',
+                                height: 30,
+                                width: 30,
+                                color: Colors.grey.shade800,
                               ),
-                              Container(
-                                height: 4,
-                                width: 8,
-                                decoration: BoxDecoration(
-                                    color: Colors.black,
-                                    borderRadius: BorderRadius.circular(50)),
+                              SizedBox(
+                                width: width * 0.03,
+                              ),
+                              Icon(
+                                Icons.shopping_bag_outlined,
+                                size: 31,
+                                color: Colors.grey.shade800,
+                              ),
+                              SizedBox(
+                                width: width * 0.02,
                               )
                             ],
                           ),
-                          const SizedBox(
-                            width: 20,
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                height: 50,
+                decoration: const BoxDecoration(color: Colors.transparent),
+                //Search bar and mic
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: width * 0.03,
+                    ),
+                    Container(
+                      height: height * 0.06,
+                      width: width * 0.85,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(7),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black.withOpacity(0.05),
+                                blurRadius: 15,
+                                spreadRadius: 3,
+                                offset: const Offset(0, 5))
+                          ]),
+                      child: Row(
+                        // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          SizedBox(
+                            width: width * 0.045,
                           ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              category(
-                                  categoryName: "Discount",
-                                  Colors: Colors.grey.shade500),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                            ],
+                          Text(
+                            "Search here",
+                            style: TextStyle(
+                                color: Colors.grey.shade600,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Poppins'),
                           ),
-                          const SizedBox(
-                            width: 20,
+                          SizedBox(
+                            width: width * 0.45,
                           ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              category(
-                                  categoryName: "Exclusive",
-                                  Colors: Colors.grey.shade500),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                            ],
+                          Icon(
+                            Icons.search,
+                            color: Colors.grey.shade600,
+                            size: 27,
                           )
                         ],
-                      )),
-                  // product row of containers
-
-                  ezproductconatiners(
-                      containerheight: height,
-                      containerwidth: width,
-                      imageheightinpercent1: 0.172,
-                      imageindex1: 0,
-                      imageindex2: 1,
-                      imageheightinpercent2: 0.128),
-                  ezproductconatiners(
-                      containerheight: height,
-                      containerwidth: width,
-                      imageheightinpercent1: 0.150,
-                      imageindex1: 2,
-                      imageindex2: 3,
-                      imageheightinpercent2: 0.123),
-                  ezproductconatiners(
-                      containerheight: height,
-                      containerwidth: width,
-                      imageheightinpercent1: 0.203,
-                      imageindex1: 4,
-                      imageindex2: 5,
-                      imageheightinpercent2: 0.14),
-                  ezproductconatiners(
-                      containerheight: height,
-                      containerwidth: width,
-                      imageheightinpercent1: 0.138,
-                      imageindex1: 6,
-                      imageindex2: 7,
-                      imageheightinpercent2: 0.129),
-                  ezproductconatiners(
-                      containerheight: height,
-                      containerwidth: width,
-                      imageheightinpercent1: 0.129,
-                      imageindex1: 8,
-                      imageindex2: 9,
-                      imageheightinpercent2: 0.205),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Icon(
+                      Icons.mic_none,
+                      color: Colors.grey.shade600,
+                      size: 35,
+                    )
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              //choose brand and see all
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  // SizedBox(
+                  //   width: 13,
+                  // ),
+                  Text(
+                    "Choose brand",
+                    style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: -0.5,
+                        color: Colors.grey.shade800),
+                  ),
+                  const SizedBox(
+                    width: 160,
+                  ),
+                  Text(
+                    "See All",
+                    style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: -0.5,
+                        color: Colors.grey.shade700),
+                  ),
                 ],
               ),
-            ),
+              const SizedBox(
+                height: 10,
+              ),
+              //Containers of brands
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Container(
+                  height: 120,
+                  child: Row(
+                    children: [
+                      const SizedBox(
+                        width: 7,
+                      ),
+                      brandContainer(
+                          brandName: Brands[0]['name'],
+                          height: height,
+                          width: width,
+                          image: Brands[0]['image'],
+                          imageHeight: height,
+                          imagepercentHeight: 0.078),
+                      brandContainer(
+                          brandName: Brands[1]['name'],
+                          height: height,
+                          width: width,
+                          image: Brands[1]['image'],
+                          // imageHeight: 40,
+                          upperSidebox: 14,
+                          lowerSidebox: 16,
+                          imageHeight: height,
+                          imagepercentHeight: 0.044),
+                      brandContainer(
+                          brandName: Brands[2]['name'],
+                          height: height,
+                          width: width,
+                          image: Brands[2]['image'],
+                          // imageHeight: 70,
+                          imageHeight: height,
+                          imagepercentHeight: 0.078),
+                      brandContainer(
+                          brandName: Brands[3]['name'],
+                          height: height,
+                          width: width,
+                          image: Brands[3]['image'],
+                          // imageHeight: 55,
+                          upperSidebox: 8,
+                          lowerSidebox: 5,
+                          imageHeight: height,
+                          imagepercentHeight: 0.062),
+                      SizedBox(
+                        width: width * 0.045,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              //POPULAR , DISCOUNT
+              Container(
+                  height: 70,
+                  decoration: const BoxDecoration(color: Colors.transparent),
+                  child: Row(
+                    // mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        width: 21,
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          category(
+                              categoryName: "Popular",
+                              Colors: Colors.grey.shade800),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Container(
+                            height: 4,
+                            width: 8,
+                            decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.circular(50)),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          category(
+                              categoryName: "Discount",
+                              Colors: Colors.grey.shade500),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          category(
+                              categoryName: "Exclusive",
+                              Colors: Colors.grey.shade500),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                        ],
+                      )
+                    ],
+                  )),
+              // product row of containers
+
+              ezproductconatiners(
+                  containerheight: height,
+                  containerwidth: width,
+                  imageheightinpercent1: 0.172,
+                  imageindex1: 0,
+                  imageindex2: 1,
+                  imageheightinpercent2: 0.128),
+              ezproductconatiners(
+                  containerheight: height,
+                  containerwidth: width,
+                  imageheightinpercent1: 0.150,
+                  imageindex1: 2,
+                  imageindex2: 3,
+                  imageheightinpercent2: 0.123),
+              ezproductconatiners(
+                  containerheight: height,
+                  containerwidth: width,
+                  imageheightinpercent1: 0.203,
+                  imageindex1: 4,
+                  imageindex2: 5,
+                  imageheightinpercent2: 0.14),
+              ezproductconatiners(
+                  containerheight: height,
+                  containerwidth: width,
+                  imageheightinpercent1: 0.138,
+                  imageindex1: 6,
+                  imageindex2: 7,
+                  imageheightinpercent2: 0.129),
+              ezproductconatiners(
+                  containerheight: height,
+                  containerwidth: width,
+                  imageheightinpercent1: 0.129,
+                  imageindex1: 8,
+                  imageindex2: 9,
+                  imageheightinpercent2: 0.205),
+            ],
           ),
         ),
       ),
@@ -374,7 +376,7 @@ Widget category({required String categoryName, required Color Colors}) {
           fontFamily: 'Poppins',
           fontWeight: FontWeight.w600,
           color: Colors,
-          fontSize: 18,
+          fontSize: 17,
           letterSpacing: -0.5));
 }
 
@@ -401,7 +403,14 @@ Widget productContainers(
           width: containerWidth * 0.425,
           decoration: BoxDecoration(
               color: const Color(0xffE3E5E9),
-              borderRadius: BorderRadius.circular(10)),
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.grey.withOpacity(0.4),
+                    blurRadius: 5,
+                    offset: const Offset(0, 3))
+              ]),
+
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -494,12 +503,20 @@ Widget brandContainer(
     required double imageHeight,
     required double imagepercentHeight}) {
   return Container(
-    margin: const EdgeInsets.only(left: 10),
+    margin: const EdgeInsets.only(left: 13),
     height: height * 0.1105,
     width: width * 0.25,
     decoration: BoxDecoration(
         color: const Color(0xffE3E5E9),
-        borderRadius: BorderRadius.circular(10)),
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+              blurRadius: 5,
+              spreadRadius: 0.5,
+              color: Colors.black.withOpacity(0.1),
+              offset: Offset(0, 2),
+              blurStyle: BlurStyle.inner)
+        ]),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
