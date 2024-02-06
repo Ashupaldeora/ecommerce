@@ -17,435 +17,337 @@ class HomeScreen extends StatelessWidget {
         child: Scaffold(
           backgroundColor: const Color(0xffF4F6F8),
           body: SingleChildScrollView(
-            child: Column(
-              // Main column
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: height * 0.09,
-                  width: width,
-                  decoration: const BoxDecoration(color: Colors.transparent),
-                  //app bar made of container
-                  child: Row(
-                    children: [
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Image.asset(
-                        'assets/images/4-dots-removebg.png',
-                        // height: 70,
-                        width: 20,
-                        color: Colors.grey.shade800,
-                      ),
-                      const SizedBox(
-                        height: 20,
-                        width: 149,
-                      ),
-                      Icon(
-                        Icons.all_inclusive,
-                        size: 50,
-                        color: Colors.grey.shade800,
-                      ),
-                      const SizedBox(
-                        width: 95,
-                      ),
-                      Image.asset(
-                        'assets/images/scan.png',
-                        height: 30,
-                        width: 30,
-                        color: Colors.grey.shade800,
-                      ),
-                      SizedBox(
-                        width: width * 0.03,
-                      ),
-                      Icon(
-                        Icons.shopping_bag_outlined,
-                        size: 30,
-                        color: Colors.grey.shade800,
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  height: 50,
-                  decoration: const BoxDecoration(color: Colors.transparent),
-                  //Search bar and mic
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: width * 0.03,
-                      ),
-                      Container(
-                        height: height * 0.06,
-                        width: width * 0.85,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(7),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black.withOpacity(0.05),
-                                  blurRadius: 15,
-                                  spreadRadius: 3,
-                                  offset: const Offset(0, 5))
-                            ]),
-                        child: Row(
-                          // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            const SizedBox(
-                              width: 15,
-                            ),
-                            Text(
-                              "Search here",
-                              style: TextStyle(
-                                  color: Colors.grey.shade600,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Poppins'),
-                            ),
-                            const SizedBox(
-                              width: 200,
-                            ),
-                            Icon(
-                              Icons.search,
-                              color: Colors.grey.shade600,
-                              size: 27,
-                            )
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Icon(
-                        Icons.mic_none,
-                        color: Colors.grey.shade600,
-                        size: 35,
-                      )
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 25,
-                ),
-                //choose brand and see all
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    // SizedBox(
-                    //   width: 13,
-                    // ),
-                    Text(
-                      "Choose brand",
-                      style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: -0.5,
-                          color: Colors.grey.shade800),
-                    ),
-                    const SizedBox(
-                      width: 160,
-                    ),
-                    Text(
-                      "See All",
-                      style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: -0.5,
-                          color: Colors.grey.shade700),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                //Containers of brands
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      const SizedBox(
-                        width: 7,
-                      ),
-                      brandContainer(
-                          brandName: Brands[0]['name'],
-                          height: height,
-                          width: width,
-                          image: Brands[0]['image'],
-                          imageHeight: height,
-                          imagepercentHeight: 0.078),
-                      brandContainer(
-                          brandName: Brands[1]['name'],
-                          height: height,
-                          width: width,
-                          image: Brands[1]['image'],
-                          // imageHeight: 40,
-                          upperSidebox: 14,
-                          lowerSidebox: 16,
-                          imageHeight: height,
-                          imagepercentHeight: 0.044),
-                      brandContainer(
-                          brandName: Brands[2]['name'],
-                          height: height,
-                          width: width,
-                          image: Brands[2]['image'],
-                          // imageHeight: 70,
-                          imageHeight: height,
-                          imagepercentHeight: 0.078),
-                      brandContainer(
-                          brandName: Brands[3]['name'],
-                          height: height,
-                          width: width,
-                          image: Brands[3]['image'],
-                          // imageHeight: 55,
-                          upperSidebox: 8,
-                          lowerSidebox: 5,
-                          imageHeight: height,
-                          imagepercentHeight: 0.062),
-                      SizedBox(
-                        width: width * 0.045,
-                      )
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                //POPULAR , DISCOUNT
-                Container(
-                    height: 70,
-                    decoration: BoxDecoration(color: Colors.transparent),
+            child: Container(
+              width: width,
+              decoration: const BoxDecoration(color: Colors.transparent),
+              child: Column(
+                // Main column
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    height: height * 0.09,
+                    width: width,
+                    decoration: const BoxDecoration(color: Colors.transparent),
+                    //app bar made of container
                     child: Row(
-                      // mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        // SizedBox(
+                        //   width: width * 0.043,
+                        // ),
+                        Container(
+                          margin: EdgeInsets.only(left: width * 0.025),
+                          decoration:
+                              const BoxDecoration(color: Colors.transparent),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'assets/images/4-dots-removebg.png',
+                                // height: 70,
+                                width: 20,
+                                color: Colors.grey.shade800,
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        Container(
+                          margin: EdgeInsets.only(left: width * 0.355),
+                          decoration:
+                              const BoxDecoration(color: Colors.transparent),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.all_inclusive,
+                                size: 50,
+                                color: Colors.grey.shade800,
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        Container(
+                          padding: EdgeInsets.only(left: width * 0.025),
+                          margin: EdgeInsets.only(left: width * 0.2),
+                          decoration:
+                              const BoxDecoration(color: Colors.transparent),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Row(
+                                children: [
+                                  Image.asset(
+                                    'assets/images/scan.png',
+                                    height: 30,
+                                    width: 30,
+                                    color: Colors.grey.shade800,
+                                  ),
+                                  SizedBox(
+                                    width: width * 0.03,
+                                  ),
+                                  Icon(
+                                    Icons.shopping_bag_outlined,
+                                    size: 31,
+                                    color: Colors.grey.shade800,
+                                  ),
+                                  SizedBox(
+                                    width: width * 0.02,
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 50,
+                    decoration: const BoxDecoration(color: Colors.transparent),
+                    //Search bar and mic
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          width: width * 0.03,
+                        ),
+                        Container(
+                          height: height * 0.06,
+                          width: width * 0.85,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(7),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.05),
+                                    blurRadius: 15,
+                                    spreadRadius: 3,
+                                    offset: const Offset(0, 5))
+                              ]),
+                          child: Row(
+                            // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              SizedBox(
+                                width: width * 0.045,
+                              ),
+                              Text(
+                                "Search here",
+                                style: TextStyle(
+                                    color: Colors.grey.shade600,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Poppins'),
+                              ),
+                              SizedBox(
+                                width: width * 0.45,
+                              ),
+                              Icon(
+                                Icons.search,
+                                color: Colors.grey.shade600,
+                                size: 27,
+                              )
+                            ],
+                          ),
+                        ),
                         const SizedBox(
-                          width: 21,
+                          width: 5,
                         ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            category(
-                                categoryName: "Popular",
-                                Colors: Colors.grey.shade800),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              height: 4,
-                              width: 8,
-                              decoration: BoxDecoration(
-                                  color: Colors.black,
-                                  borderRadius: BorderRadius.circular(50)),
-                            )
-                          ],
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            category(
-                                categoryName: "Discount",
-                                Colors: Colors.grey.shade500),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            category(
-                                categoryName: "Exclusive",
-                                Colors: Colors.grey.shade500),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                          ],
+                        Icon(
+                          Icons.mic_none,
+                          color: Colors.grey.shade600,
+                          size: 35,
                         )
                       ],
-                    )),
-                //first product row of containers
-                Row(
-                  children: [
-                    productContainers(
-                        index: 0,
-                        discount: details[0]['discount'],
-                        height: 150,
-                        containerHeight: height,
-                        containerWidth: width),
-                    productContainers(
-                        index: 1,
-                        discount: details[1]['discount'],
-                        height: 111,
-                        containerHeight: height,
-                        containerWidth: width),
-                  ],
-                ),
-                // const SizedBox(
-                //   height: 150,
-                // ),
-                const SizedBox(
-                  height: 10,
-                ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  //choose brand and see all
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      // SizedBox(
+                      //   width: 13,
+                      // ),
+                      Text(
+                        "Choose brand",
+                        style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: -0.5,
+                            color: Colors.grey.shade800),
+                      ),
+                      const SizedBox(
+                        width: 160,
+                      ),
+                      Text(
+                        "See All",
+                        style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: -0.5,
+                            color: Colors.grey.shade700),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  //Containers of brands
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        const SizedBox(
+                          width: 7,
+                        ),
+                        brandContainer(
+                            brandName: Brands[0]['name'],
+                            height: height,
+                            width: width,
+                            image: Brands[0]['image'],
+                            imageHeight: height,
+                            imagepercentHeight: 0.078),
+                        brandContainer(
+                            brandName: Brands[1]['name'],
+                            height: height,
+                            width: width,
+                            image: Brands[1]['image'],
+                            // imageHeight: 40,
+                            upperSidebox: 14,
+                            lowerSidebox: 16,
+                            imageHeight: height,
+                            imagepercentHeight: 0.044),
+                        brandContainer(
+                            brandName: Brands[2]['name'],
+                            height: height,
+                            width: width,
+                            image: Brands[2]['image'],
+                            // imageHeight: 70,
+                            imageHeight: height,
+                            imagepercentHeight: 0.078),
+                        brandContainer(
+                            brandName: Brands[3]['name'],
+                            height: height,
+                            width: width,
+                            image: Brands[3]['image'],
+                            // imageHeight: 55,
+                            upperSidebox: 8,
+                            lowerSidebox: 5,
+                            imageHeight: height,
+                            imagepercentHeight: 0.062),
+                        SizedBox(
+                          width: width * 0.045,
+                        )
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  //POPULAR , DISCOUNT
+                  Container(
+                      height: 70,
+                      decoration:
+                          const BoxDecoration(color: Colors.transparent),
+                      child: Row(
+                        // mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            width: 21,
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              category(
+                                  categoryName: "Popular",
+                                  Colors: Colors.grey.shade800),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Container(
+                                height: 4,
+                                width: 8,
+                                decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.circular(50)),
+                              )
+                            ],
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              category(
+                                  categoryName: "Discount",
+                                  Colors: Colors.grey.shade500),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              category(
+                                  categoryName: "Exclusive",
+                                  Colors: Colors.grey.shade500),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                            ],
+                          )
+                        ],
+                      )),
+                  // product row of containers
 
-                namePrice(
-                    firstitemName: details[0]['name'],
-                    firstitemPrice: details[0]['price'],
-                    seconditemName: details[1]['name'],
-                    seconditemPrice: details[1]['price']),
-                const SizedBox(
-                  height: 25,
-                ),
-                //Second product row of conatiners
-                Row(
-                  children: [
-                    productContainers(
-                        index: 2,
-                        discount: details[2]['discount'],
-                        height: 130.5,
-                        containerHeight: height,
-                        containerWidth: width),
-                    productContainers(
-                        index: 3,
-                        discount: details[3]['discount'],
-                        height: 107,
-                        containerHeight: height,
-                        containerWidth: width),
-                  ],
-                ),
-
-                const SizedBox(
-                  height: 10,
-                ),
-                namePrice(
-                    firstitemName: details[2]['name'],
-                    firstitemPrice: details[2]['price'],
-                    seconditemName: details[3]['name'],
-                    seconditemPrice: details[3]['price']),
-                // Row(
-                //   children: [
-                //     productContainers(
-                //         index: 0,
-                //         discount: details[0]['discount'],
-                //         containerHeight: height,
-                //         containerWidth: width,
-                //         height: 150),
-                //     productContainers(
-                //         index: 1,
-                //         discount: details[1]['discount'],
-                //         containerHeight: height,
-                //         containerWidth: width,
-                //         height: 111)
-                //   ],
-                // ),
-                // copy change
-                Row(
-                  children: [
-                    productContainers(
-                        index: 0,
-                        discount: details[0]['discount'],
-                        height: 150,
-                        containerHeight: height,
-                        containerWidth: width),
-                    productContainers(
-                        index: 1,
-                        discount: details[1]['discount'],
-                        height: 111,
-                        containerHeight: height,
-                        containerWidth: width),
-                  ],
-                ),
-                // const SizedBox(
-                //   height: 150,
-                // ),
-                const SizedBox(
-                  height: 10,
-                ),
-
-                namePrice(
-                    firstitemName: details[0]['name'],
-                    firstitemPrice: details[0]['price'],
-                    seconditemName: details[1]['name'],
-                    seconditemPrice: details[1]['price']),
-                const SizedBox(
-                  height: 25,
-                ),
-                //Second product row of conatiners
-                Row(
-                  children: [
-                    productContainers(
-                        index: 2,
-                        discount: details[2]['discount'],
-                        height: 130.5,
-                        containerHeight: height,
-                        containerWidth: width),
-                    productContainers(
-                        index: 3,
-                        discount: details[3]['discount'],
-                        height: 107,
-                        containerHeight: height,
-                        containerWidth: width),
-                  ],
-                ),
-
-                const SizedBox(
-                  height: 10,
-                ),
-                namePrice(
-                    firstitemName: details[2]['name'],
-                    firstitemPrice: details[2]['price'],
-                    seconditemName: details[3]['name'],
-                    seconditemPrice: details[3]['price']),
-                Row(
-                  children: [
-                    productContainers(
-                        index: 0,
-                        discount: details[0]['discount'],
-                        containerHeight: height,
-                        containerWidth: width,
-                        height: 150),
-                    productContainers(
-                        index: 1,
-                        discount: details[1]['discount'],
-                        containerHeight: height,
-                        containerWidth: width,
-                        height: 111)
-                  ],
-                ),
-                namePrice(
-                    firstitemName: details[2]['name'],
-                    firstitemPrice: details[2]['price'],
-                    seconditemName: details[3]['name'],
-                    seconditemPrice: details[3]['price']),
-                Row(
-                  children: [
-                    productContainers(
-                        index: 0,
-                        discount: details[0]['discount'],
-                        containerHeight: height,
-                        containerWidth: width,
-                        height: 150),
-                    productContainers(
-                        index: 1,
-                        discount: details[1]['discount'],
-                        containerHeight: height,
-                        containerWidth: width,
-                        height: 111)
-                  ],
-                ),
-                namePrice(
-                    firstitemName: details[2]['name'],
-                    firstitemPrice: details[2]['price'],
-                    seconditemName: details[3]['name'],
-                    seconditemPrice: details[3]['price']),
-              ],
+                  ezproductconatiners(
+                      containerheight: height,
+                      containerwidth: width,
+                      imageheightinpercent1: 0.172,
+                      imageindex1: 0,
+                      imageindex2: 1,
+                      imageheightinpercent2: 0.128),
+                  ezproductconatiners(
+                      containerheight: height,
+                      containerwidth: width,
+                      imageheightinpercent1: 0.150,
+                      imageindex1: 2,
+                      imageindex2: 3,
+                      imageheightinpercent2: 0.123),
+                  ezproductconatiners(
+                      containerheight: height,
+                      containerwidth: width,
+                      imageheightinpercent1: 0.203,
+                      imageindex1: 4,
+                      imageindex2: 5,
+                      imageheightinpercent2: 0.14),
+                  ezproductconatiners(
+                      containerheight: height,
+                      containerwidth: width,
+                      imageheightinpercent1: 0.138,
+                      imageindex1: 6,
+                      imageindex2: 7,
+                      imageheightinpercent2: 0.129),
+                  ezproductconatiners(
+                      containerheight: height,
+                      containerwidth: width,
+                      imageheightinpercent1: 0.129,
+                      imageindex1: 8,
+                      imageindex2: 9,
+                      imageheightinpercent2: 0.205),
+                ],
+              ),
             ),
           ),
         ),
@@ -482,50 +384,103 @@ Widget productContainers(
     required String discount,
     double? height,
     required double containerHeight,
-    required double containerWidth}) {
+    required double containerWidth,
+    required String itemname,
+    required String itemprice}) {
   return Container(
-    margin: const EdgeInsets.only(left: 21),
-    height: containerHeight * 0.22,
-    width: containerWidth * 0.425,
-    decoration: BoxDecoration(
-        color: const Color(0xffE3E5E9),
-        borderRadius: BorderRadius.circular(10)),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    height: containerHeight * 0.34,
+    decoration: BoxDecoration(color: Colors.transparent),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(
-          width: 21.5,
-        ),
-        Image.asset(
-          details[index]['image'],
-          height: height,
+        Container(
+          margin: const EdgeInsets.only(
+            left: 21,
+          ),
+          height: containerHeight * 0.21,
+          width: containerWidth * 0.425,
+          decoration: BoxDecoration(
+              color: const Color(0xffE3E5E9),
+              borderRadius: BorderRadius.circular(10)),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(
+                width: 21.5,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(25),
+                    child: Image.asset(
+                      details[index]['image'],
+                      height: height,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 20),
+                color: Colors.transparent,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 120),
+                      height: containerHeight * 0.0165,
+                      width: containerWidth * 0.092,
+                      alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                          color: Color(0xffFED16A),
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(10),
+                              topLeft: Radius.circular(10))),
+                      child: Text(
+                        "$discount% OFF",
+                        style: const TextStyle(
+                            fontSize: 7.5,
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+          // child: Image.asset(),
         ),
         Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              margin: const EdgeInsets.only(bottom: 120),
-              height: 18,
-              width: 40,
-              alignment: Alignment.center,
-              decoration: const BoxDecoration(
-                  color: Color(0xffFED16A),
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(10),
-                      topLeft: Radius.circular(10))),
-              child: Text(
-                "$discount% OFF",
-                style: const TextStyle(
-                    fontSize: 7,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w700),
-              ),
-            ),
+                decoration: const BoxDecoration(color: Colors.transparent),
+                margin: const EdgeInsets.only(left: 21, bottom: 8, top: 10),
+                child: Text(
+                  "$itemname",
+                  style: TextStyle(
+                      color: Colors.grey.shade700,
+                      fontSize: 15,
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w600),
+                )),
+            Container(
+                decoration: const BoxDecoration(color: Colors.transparent),
+                margin: const EdgeInsets.only(left: 21),
+                child: Text(
+                  "$itemprice",
+                  style: TextStyle(
+                      color: Colors.grey.shade800,
+                      fontSize: 15.5,
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w700),
+                )),
           ],
         )
       ],
     ),
-    // child: Image.asset(),
   );
 }
 
@@ -571,78 +526,31 @@ Widget brandContainer(
   );
 }
 
-Widget namePrice(
-    {required String firstitemName,
-    required String firstitemPrice,
-    required String seconditemName,
-    required String seconditemPrice}) {
+Widget ezproductconatiners(
+    {required double containerheight,
+    required double containerwidth,
+    required double imageheightinpercent1,
+    imageheightinpercent2,
+    required int imageindex1,
+    imageindex2}) {
   return Row(
     children: [
-      const SizedBox(
-        width: 21.5,
-      ),
-      Column(
-        children: [
-          Text(
-            firstitemName,
-            style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontFamily: 'Poppins',
-                fontSize: 17,
-                color: Colors.grey.shade700,
-                letterSpacing: -0.5),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Container(
-            margin: EdgeInsets.only(right: 72),
-            decoration: BoxDecoration(color: Colors.transparent),
-            child: Text(
-              firstitemPrice,
-              style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontFamily: 'Poppins',
-                  fontSize: 17,
-                  color: Colors.grey.shade800,
-                  letterSpacing: -0.5),
-            ),
-          ),
-        ],
-      ),
-      Column(
-        children: [
-          Container(
-            margin: const EdgeInsets.only(left: 60),
-            child: Text(
-              seconditemName,
-              style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontFamily: 'Poppins',
-                  fontSize: 17,
-                  fontStyle: FontStyle.normal,
-                  color: Colors.grey.shade700,
-                  letterSpacing: -0.5),
-            ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Container(
-            margin: const EdgeInsets.only(left: 8),
-            decoration: const BoxDecoration(color: Colors.transparent),
-            child: Text(
-              seconditemPrice,
-              style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontFamily: 'Poppins',
-                  fontSize: 17,
-                  color: Colors.grey.shade800,
-                  letterSpacing: -0.5),
-            ),
-          ),
-        ],
-      )
+      productContainers(
+          index: imageindex1,
+          discount: details[imageindex1]['discount'],
+          containerHeight: containerheight,
+          containerWidth: containerwidth,
+          itemname: details[imageindex1]['name'],
+          itemprice: details[imageindex1]['price'],
+          height: containerheight * imageheightinpercent1),
+      productContainers(
+          index: imageindex2,
+          discount: details[imageindex2]['discount'],
+          containerHeight: containerheight,
+          containerWidth: containerwidth,
+          height: containerheight * imageheightinpercent2,
+          itemname: details[imageindex2]['name'],
+          itemprice: details[imageindex2]['price'])
     ],
   );
 }

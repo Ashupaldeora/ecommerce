@@ -30,6 +30,36 @@ List details = [
     'discount': '25',
     'image': 'assets/images/Product-images/Sony-headphones-wh-h900n.png'
   },
+  {
+    'name': 'Beats Studio 3\nHeadphones',
+    'price': "\$269.95",
+    'discount': '25',
+    'image': 'assets/images/Product-images/beats Studio 3.png'
+  },
+  {
+    'name': 'Beats studio pro\nHeadphones',
+    'price': "\$215.95",
+    'discount': '25',
+    'image': 'assets/images/Product-images/Beats wireless dre studio.png'
+  },
+  {
+    'name': 'Boat rockerz 650\nHeadphones',
+    'price': "\$225.95",
+    'discount': '25',
+    'image': 'assets/images/Product-images/Boat rockerz 650 sunburn.png'
+  },
+  {
+    'name': 'JBL Neo pro\nHeadphones',
+    'price': "\$245.95",
+    'discount': '25',
+    'image': 'assets/images/Product-images/JBL Neo pro.png'
+  },
+  {
+    'name': 'Sony bordeaux pink\nHeadphones',
+    'price': "\$299.99",
+    'discount': '25',
+    'image': 'assets/images/Product-images/Sony bordeaux pink.png'
+  },
 ];
 
 List Brands = [
