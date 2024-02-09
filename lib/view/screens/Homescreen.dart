@@ -1,6 +1,11 @@
 import 'package:ecommerce/Utils/headphones.dart';
+import 'package:ecommerce/Utils/productdescription.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
+
+import '../../Utils/cartlist.dart';
+import '../../Utils/colors.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -89,10 +94,40 @@ class _HomeScreenState extends State<HomeScreen> {
                               SizedBox(
                                 width: width * 0.03,
                               ),
-                              Icon(
-                                Icons.shopping_bag_outlined,
-                                size: 31,
-                                color: Colors.grey.shade800,
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    Navigator.of(context).pushNamed('/cart');
+                                  });
+                                },
+                                child: Stack(children: [
+                                  SvgPicture.asset(
+                                    'assets/images/Svg/9ecd99fe332ca484fbb9193d5b78c457.svg',
+                                    height: 30,
+                                    width: 30,
+                                  ),
+                                  Positioned(
+                                      top: 0,
+                                      left: 15,
+                                      child: Container(
+                                        height: 15,
+                                        width: 15,
+                                        alignment: Alignment.center,
+                                        decoration: BoxDecoration(
+                                            color: cartcolor,
+                                            borderRadius:
+                                                BorderRadius.circular(100)),
+                                        child: Text(
+                                          "${addtocartimage.length}",
+                                          style: TextStyle(
+                                              fontSize: 10,
+                                              color:
+                                                  (addtocartimage.length == 0)
+                                                      ? Colors.transparent
+                                                      : Colors.black),
+                                        ),
+                                      ))
+                                ]),
                               ),
                               SizedBox(
                                 width: width * 0.02,
@@ -321,39 +356,199 @@ class _HomeScreenState extends State<HomeScreen> {
                   imageheightinpercent1: 0.172,
                   imageindex1: 0,
                   imageindex2: 1,
-                  imageheightinpercent2: 0.128),
+                  imageheightinpercent2: 0.128,
+                  context: context),
               ezproductconatiners(
                   containerheight: height,
                   containerwidth: width,
                   imageheightinpercent1: 0.150,
                   imageindex1: 2,
                   imageindex2: 3,
-                  imageheightinpercent2: 0.123),
+                  imageheightinpercent2: 0.123,
+                  context: context),
               ezproductconatiners(
                   containerheight: height,
                   containerwidth: width,
                   imageheightinpercent1: 0.203,
                   imageindex1: 4,
                   imageindex2: 5,
-                  imageheightinpercent2: 0.14),
+                  imageheightinpercent2: 0.14,
+                  context: context),
               ezproductconatiners(
                   containerheight: height,
                   containerwidth: width,
                   imageheightinpercent1: 0.138,
                   imageindex1: 6,
                   imageindex2: 7,
-                  imageheightinpercent2: 0.129),
+                  imageheightinpercent2: 0.129,
+                  context: context),
               ezproductconatiners(
                   containerheight: height,
                   containerwidth: width,
                   imageheightinpercent1: 0.129,
                   imageindex1: 8,
                   imageindex2: 9,
-                  imageheightinpercent2: 0.205),
+                  imageheightinpercent2: 0.205,
+                  context: context),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget productContainers(
+      {required int index,
+      required String discount,
+      double? height,
+      required double containerHeight,
+      required double containerWidth,
+      required String itemname,
+      required String itemprice,
+      required BuildContext context}) {
+    return Container(
+      height: containerHeight * 0.34,
+      decoration: BoxDecoration(color: Colors.transparent),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          InkWell(
+            onTap: () {
+              setState(() {
+                switchingscreens[0]['name'] = details[index]['name'];
+                switchingscreens[0]['price'] = details[index]['price'];
+                switchingscreens[0]['image'] = details[index]['image'];
+              });
+              Navigator.of(context).pushNamed('/product');
+            },
+            child: Container(
+              margin: const EdgeInsets.only(
+                left: 21,
+              ),
+              height: containerHeight * 0.21,
+              width: containerWidth * 0.425,
+              decoration: BoxDecoration(
+                  color: const Color(0xffE3E5E9),
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        blurRadius: 5,
+                        offset: const Offset(0, 3))
+                  ]),
+
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                    width: 21.5,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(25),
+                        child: Image.asset(
+                          details[index]['image'],
+                          height: height,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 20),
+                    color: Colors.transparent,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(bottom: 120),
+                          height: containerHeight * 0.0165,
+                          width: containerWidth * 0.092,
+                          alignment: Alignment.center,
+                          decoration: const BoxDecoration(
+                              color: Color(0xffFED16A),
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(10),
+                                  topLeft: Radius.circular(10))),
+                          child: Text(
+                            "$discount% OFF",
+                            style: const TextStyle(
+                                fontSize: 7.5,
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              // child: Image.asset(),
+            ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                  decoration: const BoxDecoration(color: Colors.transparent),
+                  margin: const EdgeInsets.only(left: 21, bottom: 8, top: 10),
+                  child: Text(
+                    "$itemname",
+                    style: TextStyle(
+                        color: Colors.grey.shade700,
+                        fontSize: 15,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w600),
+                  )),
+              Container(
+                  decoration: const BoxDecoration(color: Colors.transparent),
+                  margin: const EdgeInsets.only(left: 21),
+                  child: Text(
+                    "$itemprice",
+                    style: TextStyle(
+                        color: Colors.grey.shade800,
+                        fontSize: 15.5,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w700),
+                  )),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget ezproductconatiners(
+      {required double containerheight,
+      required double containerwidth,
+      required double imageheightinpercent1,
+      imageheightinpercent2,
+      required int imageindex1,
+      imageindex2,
+      required BuildContext context}) {
+    return Row(
+      children: [
+        productContainers(
+            index: imageindex1,
+            discount: details[imageindex1]['discount'],
+            containerHeight: containerheight,
+            containerWidth: containerwidth,
+            itemname: details[imageindex1]['name'],
+            itemprice: details[imageindex1]['price'],
+            height: containerheight * imageheightinpercent1,
+            context: context),
+        productContainers(
+            index: imageindex2,
+            discount: details[imageindex2]['discount'],
+            containerHeight: containerheight,
+            containerWidth: containerwidth,
+            height: containerheight * imageheightinpercent2,
+            itemname: details[imageindex2]['name'],
+            itemprice: details[imageindex2]['price'],
+            context: context)
+      ],
     );
   }
 }
@@ -381,117 +576,6 @@ Widget category({required String categoryName, required Color Colors}) {
 }
 
 //Product container
-Widget productContainers(
-    {required int index,
-    required String discount,
-    double? height,
-    required double containerHeight,
-    required double containerWidth,
-    required String itemname,
-    required String itemprice}) {
-  return Container(
-    height: containerHeight * 0.34,
-    decoration: BoxDecoration(color: Colors.transparent),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          margin: const EdgeInsets.only(
-            left: 21,
-          ),
-          height: containerHeight * 0.21,
-          width: containerWidth * 0.425,
-          decoration: BoxDecoration(
-              color: const Color(0xffE3E5E9),
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.grey.withOpacity(0.4),
-                    blurRadius: 5,
-                    offset: const Offset(0, 3))
-              ]),
-
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(
-                width: 21.5,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(25),
-                    child: Image.asset(
-                      details[index]['image'],
-                      height: height,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ],
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 20),
-                color: Colors.transparent,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 120),
-                      height: containerHeight * 0.0165,
-                      width: containerWidth * 0.092,
-                      alignment: Alignment.center,
-                      decoration: const BoxDecoration(
-                          color: Color(0xffFED16A),
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(10),
-                              topLeft: Radius.circular(10))),
-                      child: Text(
-                        "$discount% OFF",
-                        style: const TextStyle(
-                            fontSize: 7.5,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w700),
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-          // child: Image.asset(),
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-                decoration: const BoxDecoration(color: Colors.transparent),
-                margin: const EdgeInsets.only(left: 21, bottom: 8, top: 10),
-                child: Text(
-                  "$itemname",
-                  style: TextStyle(
-                      color: Colors.grey.shade700,
-                      fontSize: 15,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w600),
-                )),
-            Container(
-                decoration: const BoxDecoration(color: Colors.transparent),
-                margin: const EdgeInsets.only(left: 21),
-                child: Text(
-                  "$itemprice",
-                  style: TextStyle(
-                      color: Colors.grey.shade800,
-                      fontSize: 15.5,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w700),
-                )),
-          ],
-        )
-      ],
-    ),
-  );
-}
 
 Widget brandContainer(
     {required String brandName,
@@ -540,34 +624,5 @@ Widget brandContainer(
         itemName("$brandName"),
       ],
     ),
-  );
-}
-
-Widget ezproductconatiners(
-    {required double containerheight,
-    required double containerwidth,
-    required double imageheightinpercent1,
-    imageheightinpercent2,
-    required int imageindex1,
-    imageindex2}) {
-  return Row(
-    children: [
-      productContainers(
-          index: imageindex1,
-          discount: details[imageindex1]['discount'],
-          containerHeight: containerheight,
-          containerWidth: containerwidth,
-          itemname: details[imageindex1]['name'],
-          itemprice: details[imageindex1]['price'],
-          height: containerheight * imageheightinpercent1),
-      productContainers(
-          index: imageindex2,
-          discount: details[imageindex2]['discount'],
-          containerHeight: containerheight,
-          containerWidth: containerwidth,
-          height: containerheight * imageheightinpercent2,
-          itemname: details[imageindex2]['name'],
-          itemprice: details[imageindex2]['price'])
-    ],
   );
 }
