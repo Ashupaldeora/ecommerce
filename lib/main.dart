@@ -30,7 +30,7 @@ class _appState extends State<app> {
     return MaterialApp(
       theme: ThemeData(useMaterial3: true),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/cart',
+      initialRoute: '/home',
       routes: {
         '/home': (context) => HomeScreen(),
         '/product': (context) => productscreen(),

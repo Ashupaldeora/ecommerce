@@ -68,7 +68,8 @@ class _State extends State<productscreen> {
                           child: InkWell(
                             onTap: () {
                               setState(() {
-                                Navigator.of(context).pushNamed('/cart');
+                                Navigator.of(context).pushNamed('/cart',
+                                    arguments: addtocartprice);
                               });
                             },
                             child: SvgPicture.asset(
@@ -275,7 +276,7 @@ class _State extends State<productscreen> {
                           fontWeight: FontWeight.w500),
                     ),
                     Text(
-                      switchingscreens[0]['price'],
+                      '\$${switchingscreens[0]['price']}',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 21,

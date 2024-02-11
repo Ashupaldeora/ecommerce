@@ -10,7 +10,7 @@ List description = [
 List switchingscreens = [
   {
     'name': 'Noice Cancelling\nHeadphones',
-    'price': "\$249.95",
+    'price': 249.95,
     'image':
         'assets/images/Product-images/beats-noice-cancelling-headphones.png',
     'cart': 'Add to cart',

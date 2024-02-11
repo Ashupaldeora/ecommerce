@@ -2,6 +2,7 @@ import 'package:ecommerce/Utils/cartlist.dart';
 import 'package:ecommerce/Utils/colors.dart';
 import 'package:ecommerce/Utils/headphones.dart';
 import 'package:flutter/material.dart';
+import 'package:collection/collection.dart';
 
 class cartscreen extends StatefulWidget {
   const cartscreen({super.key});
@@ -13,6 +14,8 @@ class cartscreen extends StatefulWidget {
 class _cartscreenState extends State<cartscreen> {
   @override
   Widget build(BuildContext context) {
+    var pricingsystem = ModalRoute.of(context)!.settings.arguments as List;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Oder Details"),
@@ -53,148 +56,155 @@ class _cartscreenState extends State<cartscreen> {
                       children: List.generate(
                           addtocartimage.length,
                           (index) => cartcontainers(
-                              addtocartimage[index],
-                              addtocartname[index],
-                              addtocartprice[index],
-                              numberofitems[index],
-                              index)),
+                                addtocartimage[index],
+                                addtocartname[index],
+                                addtocartprice[index],
+                                numberofitems[index],
+                                index,
+                              )),
                     )
                   ],
                 ),
               ),
             ),
           ),
+          orderinfo(pricingsystem),
+        ],
+      ),
+    );
+  }
+
+  Widget orderinfo(List pricing) {
+    return Container(
+      padding: EdgeInsets.all(20),
+      width: double.maxFinite,
+      height: 300,
+      decoration: BoxDecoration(),
+      child: Column(
+        children: [
           Container(
-            padding: EdgeInsets.all(20),
-            width: double.maxFinite,
-            height: 300,
-            decoration: BoxDecoration(),
-            child: Column(
+            margin: EdgeInsets.only(bottom: 20),
+            child: Row(
               children: [
-                Container(
-                  margin: EdgeInsets.only(bottom: 20),
-                  child: Row(
-                    children: [
-                      Text(
-                        "Order Info",
-                        style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 23,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: -0.5),
-                      )
-                    ],
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          "Subtotal",
-                          style: TextStyle(
-                              color: Colors.grey.shade800,
-                              fontFamily: 'Poppins',
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              letterSpacing: -0.5),
-                        ),
-                        SizedBox(
-                          height: 23,
-                        ),
-                        Text(
-                          "Shipping Cost",
-                          style: TextStyle(
-                              color: Colors.grey.shade800,
-                              fontFamily: 'Poppins',
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              letterSpacing: -0.5),
-                        ),
-                        SizedBox(
-                          height: 27,
-                        ),
-                        Text(
-                          "Total",
-                          style: TextStyle(
-                              color: Colors.grey.shade800,
-                              fontFamily: 'Poppins',
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              letterSpacing: -0.5),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          "\$199.00",
-                          style: TextStyle(
-                              color: Colors.black87,
-                              fontFamily: 'Poppins',
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                              letterSpacing: -0.5),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          "+\$10.00",
-                          style: TextStyle(
-                              color: Colors.black87,
-                              fontFamily: 'Poppins',
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                              letterSpacing: -0.5),
-                        ),
-                        SizedBox(
-                          height: 22,
-                        ),
-                        Text(
-                          "+\$209.00",
-                          style: TextStyle(
-                              color: Colors.black87,
-                              fontFamily: 'Poppins',
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                              letterSpacing: -0.5),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-                Row(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(top: 18),
-                      height: 65,
-                      width: 370,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          color: Color(0xffFED268),
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Text(
-                        "Checkout",
-                        style: TextStyle(
-                            color: Colors.black87,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 20,
-                            fontFamily: 'Poppins',
-                            letterSpacing: -0.5),
-                      ),
-                    )
-                  ],
+                Text(
+                  "Order Info",
+                  style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontSize: 23,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: -0.5),
                 )
               ],
             ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    "Subtotal",
+                    style: TextStyle(
+                        color: Colors.grey.shade800,
+                        fontFamily: 'Poppins',
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: -0.5),
+                  ),
+                  SizedBox(
+                    height: 23,
+                  ),
+                  Text(
+                    "Shipping Cost",
+                    style: TextStyle(
+                        color: Colors.grey.shade800,
+                        fontFamily: 'Poppins',
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: -0.5),
+                  ),
+                  SizedBox(
+                    height: 27,
+                  ),
+                  Text(
+                    "Total",
+                    style: TextStyle(
+                        color: Colors.grey.shade800,
+                        fontFamily: 'Poppins',
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: -0.5),
+                  ),
+                ],
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    "\$${sumUsingLoop(pricing)}",
+                    style: TextStyle(
+                        color: Colors.black87,
+                        fontFamily: 'Poppins',
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: -0.5),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    (addtocartimage.length == 0) ? "\$0.00" : '+\$10.00',
+                    style: TextStyle(
+                        color: Colors.black87,
+                        fontFamily: 'Poppins',
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: -0.5),
+                  ),
+                  SizedBox(
+                    height: 22,
+                  ),
+                  Text(
+                    (addtocartimage.length == 0)
+                        ? "\$${sumUsingLoop(pricing) + 0}"
+                        : "\$${sumUsingLoop(pricing) + 10}",
+                    style: TextStyle(
+                        color: Colors.black87,
+                        fontFamily: 'Poppins',
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: -0.5),
+                  ),
+                ],
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                margin: EdgeInsets.only(top: 18),
+                height: 65,
+                width: 370,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    color: Color(0xffFED268),
+                    borderRadius: BorderRadius.circular(20)),
+                child: Text(
+                  "Checkout",
+                  style: TextStyle(
+                      color: Colors.black87,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 20,
+                      fontFamily: 'Poppins',
+                      letterSpacing: -0.5),
+                ),
+              )
+            ],
           )
         ],
       ),
@@ -202,7 +212,12 @@ class _cartscreenState extends State<cartscreen> {
   }
 
   Widget cartcontainers(
-      String img, String name, String price, int howmany, int index) {
+    String img,
+    String name,
+    double price,
+    int howmany,
+    int index,
+  ) {
     return Container(
       margin: EdgeInsets.only(top: 20),
       height: 130,
@@ -237,7 +252,7 @@ class _cartscreenState extends State<cartscreen> {
                 height: 10,
               ),
               Text(
-                '${price} (-\$4.00 Tax)',
+                '\$${price} (-\$4.00 Tax)',
                 style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 11,
@@ -263,7 +278,7 @@ class _cartscreenState extends State<cartscreen> {
                       Colors.transparent,
                     ),
                     child: Container(
-                      margin: EdgeInsets.only(right: 20),
+                      margin: EdgeInsets.only(right: 15),
                       height: 30,
                       width: 30,
                       alignment: Alignment.center,

@@ -404,7 +404,7 @@ class _HomeScreenState extends State<HomeScreen> {
       required double containerHeight,
       required double containerWidth,
       required String itemname,
-      required String itemprice,
+      required double itemprice,
       required BuildContext context}) {
     return Container(
       height: containerHeight * 0.34,
@@ -506,7 +506,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   decoration: const BoxDecoration(color: Colors.transparent),
                   margin: const EdgeInsets.only(left: 21),
                   child: Text(
-                    "$itemprice",
+                    "\$$itemprice",
                     style: TextStyle(
                         color: Colors.grey.shade800,
                         fontSize: 15.5,
