@@ -14,6 +14,8 @@ class cartscreen extends StatefulWidget {
 class _cartscreenState extends State<cartscreen> {
   @override
   Widget build(BuildContext context) {
+    double heightcart = MediaQuery.of(context).size.height;
+    double widthcart = MediaQuery.of(context).size.width;
     var pricingsystem = ModalRoute.of(context)!.settings.arguments as List;
 
     return Scaffold(
@@ -68,18 +70,18 @@ class _cartscreenState extends State<cartscreen> {
               ),
             ),
           ),
-          orderinfo(pricingsystem),
+          orderinfo(pricingsystem, widthcart),
         ],
       ),
     );
   }
 
-  Widget orderinfo(List pricing) {
+  Widget orderinfo(List pricing, double bottomwidth) {
     return Container(
       padding: EdgeInsets.all(20),
       width: double.maxFinite,
-      height: 300,
-      decoration: BoxDecoration(),
+      height: 320,
+      decoration: BoxDecoration(color: Colors.transparent),
       child: Column(
         children: [
           Container(
@@ -90,7 +92,7 @@ class _cartscreenState extends State<cartscreen> {
                   "Order Info",
                   style: TextStyle(
                       fontFamily: 'Poppins',
-                      fontSize: 23,
+                      fontSize: 20,
                       fontWeight: FontWeight.w600,
                       letterSpacing: -0.5),
                 )
@@ -111,7 +113,7 @@ class _cartscreenState extends State<cartscreen> {
                     style: TextStyle(
                         color: Colors.grey.shade800,
                         fontFamily: 'Poppins',
-                        fontSize: 16,
+                        fontSize: 15,
                         fontWeight: FontWeight.w600,
                         letterSpacing: -0.5),
                   ),
@@ -123,7 +125,7 @@ class _cartscreenState extends State<cartscreen> {
                     style: TextStyle(
                         color: Colors.grey.shade800,
                         fontFamily: 'Poppins',
-                        fontSize: 16,
+                        fontSize: 15,
                         fontWeight: FontWeight.w600,
                         letterSpacing: -0.5),
                   ),
@@ -135,7 +137,7 @@ class _cartscreenState extends State<cartscreen> {
                     style: TextStyle(
                         color: Colors.grey.shade800,
                         fontFamily: 'Poppins',
-                        fontSize: 16,
+                        fontSize: 15,
                         fontWeight: FontWeight.w600,
                         letterSpacing: -0.5),
                   ),
@@ -148,35 +150,35 @@ class _cartscreenState extends State<cartscreen> {
                   Text(
                     "\$${sumUsingLoop(pricing)}",
                     style: TextStyle(
-                        color: Colors.black87,
+                        color: Colors.grey.shade700,
                         fontFamily: 'Poppins',
-                        fontSize: 18,
+                        fontSize: 16,
                         fontWeight: FontWeight.w700,
                         letterSpacing: -0.5),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 23,
                   ),
                   Text(
                     (addtocartimage.length == 0) ? "\$0.00" : '+\$10.00',
                     style: TextStyle(
-                        color: Colors.black87,
+                        color: Colors.grey.shade700,
                         fontFamily: 'Poppins',
-                        fontSize: 18,
+                        fontSize: 16,
                         fontWeight: FontWeight.w700,
                         letterSpacing: -0.5),
                   ),
                   SizedBox(
-                    height: 22,
+                    height: 24,
                   ),
                   Text(
                     (addtocartimage.length == 0)
                         ? "\$${sumUsingLoop(pricing) + 0}"
                         : "\$${sumUsingLoop(pricing) + 10}",
                     style: TextStyle(
-                        color: Colors.black87,
+                        color: Colors.grey.shade700,
                         fontFamily: 'Poppins',
-                        fontSize: 18,
+                        fontSize: 16,
                         fontWeight: FontWeight.w700,
                         letterSpacing: -0.5),
                   ),
@@ -187,9 +189,9 @@ class _cartscreenState extends State<cartscreen> {
           Row(
             children: [
               Container(
-                margin: EdgeInsets.only(top: 18),
+                margin: EdgeInsets.only(top: 20, left: 10),
                 height: 65,
-                width: 370,
+                width: bottomwidth * 0.85,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                     color: Color(0xffFED268),
@@ -199,7 +201,7 @@ class _cartscreenState extends State<cartscreen> {
                   style: TextStyle(
                       color: Colors.black87,
                       fontWeight: FontWeight.w600,
-                      fontSize: 20,
+                      fontSize: 18,
                       fontFamily: 'Poppins',
                       letterSpacing: -0.5),
                 ),

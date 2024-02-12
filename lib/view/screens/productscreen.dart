@@ -81,7 +81,7 @@ class _State extends State<productscreen> {
                         ),
                         Positioned(
                             top: 17,
-                            left: 16,
+                            left: 15,
                             child: Container(
                               height: 15,
                               width: 15,
