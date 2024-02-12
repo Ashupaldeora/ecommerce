@@ -20,7 +20,7 @@ class _cartscreenState extends State<cartscreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Oder Details"),
+        title: Text("Order Details"),
         centerTitle: true,
         leading: InkWell(
             onTap: () {
@@ -83,6 +83,7 @@ class _cartscreenState extends State<cartscreen> {
       height: 320,
       decoration: BoxDecoration(color: Colors.transparent),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             margin: EdgeInsets.only(bottom: 20),
@@ -106,7 +107,7 @@ class _cartscreenState extends State<cartscreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 5,
+                    height: 2,
                   ),
                   Text(
                     "Subtotal",
@@ -148,7 +149,7 @@ class _cartscreenState extends State<cartscreen> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    "\$${sumUsingLoop(pricing)}",
+                    "\$${(sumUsing(fi, 0)).toStringAsFixed(2)}",
                     style: TextStyle(
                         color: Colors.grey.shade700,
                         fontFamily: 'Poppins',
@@ -174,7 +175,7 @@ class _cartscreenState extends State<cartscreen> {
                   Text(
                     (addtocartimage.length == 0)
                         ? "\$${sumUsingLoop(pricing) + 0}"
-                        : "\$${sumUsingLoop(pricing) + 10}",
+                        : "\$${(sumUsing(fi, 10)).toStringAsFixed(2)}",
                     style: TextStyle(
                         color: Colors.grey.shade700,
                         fontFamily: 'Poppins',
@@ -189,7 +190,7 @@ class _cartscreenState extends State<cartscreen> {
           Row(
             children: [
               Container(
-                margin: EdgeInsets.only(top: 20, left: 10),
+                margin: EdgeInsets.only(top: 25, left: 10),
                 height: 65,
                 width: bottomwidth * 0.85,
                 alignment: Alignment.center,
@@ -273,6 +274,8 @@ class _cartscreenState extends State<cartscreen> {
                       setState(() {
                         if (howmany > 1) {
                           numberofitems[index] = --howmany;
+                          fi[index] =
+                              (addtocartprice[index] * numberofitems[index]);
                         }
                       });
                     },
@@ -305,6 +308,8 @@ class _cartscreenState extends State<cartscreen> {
                     onTap: () {
                       setState(() {
                         numberofitems[index] = ++howmany;
+                        fi[index] =
+                            (addtocartprice[index] * (numberofitems[index]));
                       });
                     },
                     overlayColor: MaterialStatePropertyAll(
@@ -333,6 +338,9 @@ class _cartscreenState extends State<cartscreen> {
                         addtocartimage.removeAt(index);
                         addtocartname.removeAt(index);
                         addtocartprice.removeAt(index);
+                        numberofitems[index] = 1;
+                        fi.removeAt(index);
+                        fi[index] = 0;
                       });
                     },
                     child: Container(

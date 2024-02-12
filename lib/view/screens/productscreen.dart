@@ -63,15 +63,17 @@ class _State extends State<productscreen> {
                         ),
                       ),
                       Stack(children: [
-                        Container(
-                          margin: EdgeInsets.only(top: height * 0.02),
-                          child: InkWell(
-                            onTap: () {
-                              setState(() {
-                                Navigator.of(context).pushNamed('/cart',
-                                    arguments: addtocartprice);
-                              });
-                            },
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              List.generate(addtocartprice.length,
+                                  (index) => fi[index] = addtocartprice[index]);
+                              Navigator.of(context).pushNamed('/cart',
+                                  arguments: addtocartprice);
+                            });
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(top: height * 0.02),
                             child: SvgPicture.asset(
                               'assets/images/Svg/9ecd99fe332ca484fbb9193d5b78c457.svg',
                               height: 30,
@@ -297,7 +299,6 @@ class _State extends State<productscreen> {
                         onTap: () {
                           setState(() {
                             switchingscreens[0]['cart'] = 'Added to Cart';
-                            ++carttap;
 
                             addtocartimage.add(switchingscreens[0]['image']);
                             addtocartname.add(switchingscreens[0]['name']);
