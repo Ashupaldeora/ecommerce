@@ -97,10 +97,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               InkWell(
                                 onTap: () {
                                   setState(() {
-                                    List.generate(
-                                        addtocartprice.length,
-                                        (index) =>
-                                            fi[index] = addtocartprice[index]);
+                                    // List.generate(
+                                    //     addtocartprice.length,
+                                    //     (index) =>
+                                    //         fi[index] = addtocartprice[index]);
                                     Navigator.of(context).pushNamed('/cart',
                                         arguments: addtocartprice);
                                   });

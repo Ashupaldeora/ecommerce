@@ -20,11 +20,7 @@ double sumUsingLoop(List<dynamic> numbers) {
   return sum;
 }
 
-dynamic finalincreasetotal(var index) {
-  return numberofitems[index];
-}
-
-List fi = List.filled(addtocartprice.length + 5, 0, growable: true);
+// List fi = List.filled(addtocartprice.length + 5, 0, growable: true);
 
 dynamic sumUsing(List<dynamic> numbers, int ship) {
   dynamic tum = 0;
@@ -34,3 +30,13 @@ dynamic sumUsing(List<dynamic> numbers, int ship) {
   }
   return tum + ship;
 }
+
+double total() {
+  double totalamount = 0;
+  for (int i = 0; i < addtocartprice.length; i++) {
+    totalamount += addtocartprice[i] * numberofitems[i];
+  }
+  return totalamount;
+}
+
+double checkout = 0;

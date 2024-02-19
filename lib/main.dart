@@ -30,11 +30,11 @@ class _appState extends State<app> {
     return MaterialApp(
       theme: ThemeData(useMaterial3: true),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/home',
+      initialRoute: '/splash',
       routes: {
+        '/splash': (context) => splashscreen(),
         '/home': (context) => HomeScreen(),
         '/product': (context) => productscreen(),
-        '/splash': (context) => splashscreen(),
         '/cart': (context) => cartscreen(),
       },
       home: productscreen(),

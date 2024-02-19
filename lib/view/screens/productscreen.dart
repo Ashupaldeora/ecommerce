@@ -66,8 +66,8 @@ class _State extends State<productscreen> {
                         InkWell(
                           onTap: () {
                             setState(() {
-                              List.generate(addtocartprice.length,
-                                  (index) => fi[index] = addtocartprice[index]);
+                              // List.generate(addtocartprice.length,
+                              //     (index) => fi[index] = addtocartprice[index]);
                               Navigator.of(context).pushNamed('/cart',
                                   arguments: addtocartprice);
                             });
@@ -308,7 +308,7 @@ class _State extends State<productscreen> {
                             (addtocartimage.length > 0)
                                 ? cartcolor = Colors.amber
                                 : cartcolor = Colors.transparent;
-                            // carttick = 'assets/images/Svg/tick.svg';
+                            checkout = total();
                           });
                         },
                         child: Container(

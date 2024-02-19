@@ -58,12 +58,12 @@ class _cartscreenState extends State<cartscreen> {
                       children: List.generate(
                           addtocartimage.length,
                           (index) => cartcontainers(
-                                addtocartimage[index],
-                                addtocartname[index],
-                                addtocartprice[index],
-                                numberofitems[index],
-                                index,
-                              )),
+                              addtocartimage[index],
+                              addtocartname[index],
+                              addtocartprice[index],
+                              numberofitems[index],
+                              index,
+                              pricingsystem)),
                     )
                   ],
                 ),
@@ -149,7 +149,7 @@ class _cartscreenState extends State<cartscreen> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    "\$${(sumUsing(fi, 0)).toStringAsFixed(2)}",
+                    "\$${checkout.toStringAsFixed(2)}",
                     style: TextStyle(
                         color: Colors.grey.shade700,
                         fontFamily: 'Poppins',
@@ -175,7 +175,7 @@ class _cartscreenState extends State<cartscreen> {
                   Text(
                     (addtocartimage.length == 0)
                         ? "\$${sumUsingLoop(pricing) + 0}"
-                        : "\$${(sumUsing(fi, 10)).toStringAsFixed(2)}",
+                        : "\$${checkout.toStringAsFixed(2)}",
                     style: TextStyle(
                         color: Colors.grey.shade700,
                         fontFamily: 'Poppins',
@@ -214,13 +214,8 @@ class _cartscreenState extends State<cartscreen> {
     );
   }
 
-  Widget cartcontainers(
-    String img,
-    String name,
-    double price,
-    int howmany,
-    int index,
-  ) {
+  Widget cartcontainers(String img, String name, double price, int howmany,
+      int index, List priceing) {
     return Container(
       margin: EdgeInsets.only(top: 20),
       height: 130,
@@ -274,9 +269,10 @@ class _cartscreenState extends State<cartscreen> {
                       setState(() {
                         if (howmany > 1) {
                           numberofitems[index] = --howmany;
-                          fi[index] =
-                              (addtocartprice[index] * numberofitems[index]);
+                          // fi[index] =
+                          //     (addtocartprice[index] * numberofitems[index]);
                         }
+                        checkout = total();
                       });
                     },
                     overlayColor: MaterialStatePropertyAll(
@@ -308,8 +304,10 @@ class _cartscreenState extends State<cartscreen> {
                     onTap: () {
                       setState(() {
                         numberofitems[index] = ++howmany;
-                        fi[index] =
-                            (addtocartprice[index] * (numberofitems[index]));
+                        // sumUsingLoop(priceing,addtocartprice[index]);
+                        // fi[index] =
+                        //     (addtocartprice[index] * (numberofitems[index]));
+                        checkout = total();
                       });
                     },
                     overlayColor: MaterialStatePropertyAll(
@@ -339,8 +337,9 @@ class _cartscreenState extends State<cartscreen> {
                         addtocartname.removeAt(index);
                         addtocartprice.removeAt(index);
                         numberofitems[index] = 1;
-                        fi.removeAt(index);
-                        fi[index] = 0;
+                        // fi.removeAt(index);
+                        // fi[index] = 0;
+                        checkout = total();
                       });
                     },
                     child: Container(
